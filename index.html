@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="STREETFORM — кроссовки, вещи и аксессуары для твоего ежедневного гардероба." />
+  <title>STREETFORM — sneakers & apparel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="announcement">FREE SHIPPING ON ORDERS OVER 12 000 ₽ <span>↗</span></div>
+  <header class="site-header">
+    <a class="logo" href="#top" aria-label="STREETFORM home">STREET<span>/</span>FORM</a>
+    <nav class="main-nav" aria-label="Основная навигация">
+      <a href="#shop">Shop</a>
+      <a href="#story">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button" id="searchToggle" aria-label="Поиск">⌕</button>
+      <button class="cart-button" id="cartOpen">Bag <span id="cartCount">0</span></button>
+      <button class="menu-button" id="menuToggle" aria-label="Открыть меню">☰</button>
+    </div>
+  </header>
+  <div class="search-bar" id="searchBar">
+    <input id="searchInput" type="search" placeholder="Ищи модель, цвет или категорию" autocomplete="off" />
+  </div>
+
+  <main id="top">
+    <section class="hero section-pad">
+      <div class="hero-copy">
+        <p class="eyebrow">DROP 04 / AUTUMN 2026</p>
+        <h1>Wear your<br /><em>own</em> rules.</h1>
+        <p class="hero-text">Кроссовки, вещи и детали, которые работают каждый день. Без лишнего шума.</p>
+        <a class="button button-dark" href="#shop">Смотреть дроп <span>↘</span></a>
+      </div>
+      <div class="hero-art" aria-label="Коллаж из вещей и кроссовок">
+        <div class="art-label">SF—04</div>
+        <div class="art-sun"></div>
+        <div class="art-shoe">S<span>F</span></div>
+        <div class="art-caption">ESSENTIALS<br />FOR EVERYDAY<br />MOVEMENT</div>
+        <div class="art-grid"></div>
+      </div>
+    </section>
+
+    <section class="ticker" aria-label="Новости магазина"><div>STREETFORM — ESSENTIALS FOR EVERYDAY MOVEMENT — STREETFORM — ESSENTIALS FOR EVERYDAY MOVEMENT — </div></section>
+
+    <section class="shop section-pad" id="shop">
+      <div class="section-heading">
+        <div><p class="eyebrow">THE EDIT</p><h2>Selected pieces</h2></div>
+        <p class="section-note">Небольшая подборка для большого количества образов.</p>
+      </div>
+      <div class="category-row" id="categories">
+        <button class="filter-button active" data-category="all">All pieces</button>
+        <button class="filter-button" data-category="sneakers">Sneakers</button>
+        <button class="filter-button" data-category="apparel">Apparel</button>
+        <button class="filter-button" data-category="accessories">Accessories</button>
+        <button class="filter-button" data-category="sale">Sale</button>
+      </div>
+      <div class="product-grid" id="productGrid"></div>
+      <div class="empty-state" id="emptyState" hidden>Ничего не найдено. Попробуй другой запрос.</div>
+    </section>
+
+    <section class="manifesto section-pad" id="story">
+      <div class="manifesto-mark">SF<br /><span>↗</span></div>
+      <div><p class="eyebrow">OUR APPROACH</p><h2>Less noise.<br /><em>More form.</em></h2></div>
+      <p>Мы собираем вещи, которые остаются с тобой дольше одного сезона: честные силуэты, хорошие материалы и характер в каждой детали.</p>
+    </section>
+
+    <section class="newsletter section-pad" id="contact">
+      <div><p class="eyebrow">STAY IN THE LOOP</p><h2>Новые дропы<br />без спама.</h2></div>
+      <form id="newsletterForm" class="newsletter-form"><input type="email" required placeholder="Твой email" aria-label="Email" /><button class="button button-dark" type="submit">Подписаться ↗</button><small id="newsletterMessage"></small></form>
+    </section>
+  </main>
+
+  <div class="overlay" id="overlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Корзина">
+    <div class="drawer-head"><h3>Your bag <span id="cartItemsLabel">0 items</span></h3><button class="close-button" id="cartClose" aria-label="Закрыть">×</button></div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer"><div><span>Subtotal</span><strong id="cartTotal">0 ₽</strong></div><button class="button button-dark full" id="checkoutButton">Оформить заказ ↗</button><p>Доставка рассчитывается при оформлении.</p></div>
+  </aside>
+
+  <dialog class="admin-dialog" id="adminDialog">
+    <form method="dialog" class="admin-panel" id="adminForm">
+      <div class="drawer-head"><div><p class="eyebrow">LOCAL ADMIN</p><h3>Управление каталогом</h3></div><button class="close-button" value="cancel" aria-label="Закрыть">×</button></div>
+      <p class="admin-hint">Изменения сохраняются в этом браузере. Telegram-бот использует отдельный файл каталога.</p>
+      <div class="admin-fields"><input id="adminName" required placeholder="Название товара" /><input id="adminPrice" required type="number" min="0" placeholder="Цена, ₽" /><select id="adminCategory"><option value="sneakers">Sneakers</option><option value="apparel">Apparel</option><option value="accessories">Accessories</option></select><input id="adminColor" placeholder="Цвет" /><input id="adminImage" placeholder="URL изображения (необязательно)" /><button class="button button-dark" id="adminSave" type="submit">Добавить товар</button></div>
+      <div class="admin-list" id="adminList"></div>
+      <button class="button button-light" id="adminReset" type="button">Сбросить демо-каталог</button>
+    </form>
+  </dialog>
+
+  <button class="admin-fab" id="adminOpen" title="Открыть управление каталогом">＋</button>
+  <footer class="site-footer section-pad"><div class="logo">STREET<span>/</span>FORM</div><p>© 2026 STREETFORM. Made for movement.</p><div class="footer-links"><a href="#shop">Shop</a><a href="#contact">Instagram</a><a href="#contact">Telegram</a></div></footer>
+  <script src="script.js"></script>
+</body>
+</html>
