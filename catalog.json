@@ -1,0 +1,41 @@
+[
+  {
+    "id": "sf-001",
+    "name": "Runner 01 / Graphite",
+    "price": 12900,
+    "category": "sneakers",
+    "color": "Graphite"
+  },
+  {
+    "id": "sf-002",
+    "name": "Court Low / Cream",
+    "price": 11400,
+    "category": "sneakers",
+    "color": "Cream / Lime"
+  },
+  {
+    "id": "sf-003",
+    "name": "Heavyweight Hoodie",
+    "price": 8900,
+    "category": "apparel",
+    "color": "Washed black"
+  },
+  {
+    "id": "656160",
+    "name": "air force one",
+    "price": 11200,
+    "category": "sneakers",
+    "color": "black"
+  },
+  {
+    "id": "623506",
+    "name": "air force swag",
+    "price": 14466,
+    "category": "sneakers",
+    "color": "black",
+    "sizes": "42,43,44",
+    "stock": 55,
+    "description": "топовые кроссы все хайпарик",
+    "photo_id": "AgACAgIAAxkBAAMbarGjf7DBYMkT9M95We1krlYJScMAAs4haxtp6JBJE3Yw0fEbzZMBAAMCAAN4AAM9BA"
+  }
+]
