@@ -59,7 +59,9 @@
         <button class="filter-button" data-category="apparel">Apparel</button>
         <button class="filter-button" data-category="accessories">Accessories</button>
         <button class="filter-button" data-category="sale">Sale</button>
+        <label class="sort-control">Сортировка <select id="sortSelect"><option value="newest">Сначала новые</option><option value="price-low">Цена: ниже</option><option value="price-high">Цена: выше</option><option value="name">По названию</option></select></label>
       </div>
+      <div class="catalog-status"><span id="resultCount"></span><button class="clear-search" id="clearSearch" hidden>Сбросить поиск ×</button></div>
       <div class="product-grid" id="productGrid"></div>
       <div class="empty-state" id="emptyState" hidden>Ничего не найдено. Попробуй другой запрос.</div>
     </section>
@@ -83,11 +85,29 @@
     <div class="cart-footer"><div><span>Subtotal</span><strong id="cartTotal">0 ₽</strong></div><button class="button button-dark full" id="checkoutButton">Оформить заказ ↗</button><p>Доставка рассчитывается при оформлении.</p></div>
   </aside>
 
+  <dialog class="product-dialog" id="productDialog">
+    <div class="product-detail" id="productDetail"></div>
+    <button class="close-button detail-close" id="detailClose" type="button" aria-label="Закрыть">×</button>
+  </dialog>
+
   <dialog class="admin-dialog" id="adminDialog">
-    <form method="dialog" class="admin-panel" id="adminForm">
-      <div class="drawer-head"><div><p class="eyebrow">LOCAL ADMIN</p><h3>Управление каталогом</h3></div><button class="close-button" value="cancel" aria-label="Закрыть">×</button></div>
-      <p class="admin-hint">Изменения сохраняются в этом браузере. Telegram-бот использует отдельный файл каталога.</p>
-      <div class="admin-fields"><input id="adminName" required placeholder="Название товара" /><input id="adminPrice" required type="number" min="0" placeholder="Цена, ₽" /><select id="adminCategory"><option value="sneakers">Sneakers</option><option value="apparel">Apparel</option><option value="accessories">Accessories</option></select><input id="adminColor" placeholder="Цвет" /><input id="adminImage" placeholder="URL изображения (необязательно)" /><button class="button button-dark" id="adminSave" type="submit">Добавить товар</button></div>
+    <form class="admin-panel" id="adminForm">
+      <div class="drawer-head"><div><p class="eyebrow">LOCAL ADMIN</p><h3>Управление каталогом</h3></div><button class="close-button" id="adminClose" type="button" aria-label="Закрыть">×</button></div>
+      <p class="admin-hint">Здесь можно добавить товар, заменить фото, изменить цену и редактировать детали. Изменения сохраняются в этом браузере.</p>
+      <input id="adminEditingId" type="hidden" />
+      <div class="admin-fields">
+        <label>Название<input id="adminName" required placeholder="Например, Nike Dunk Low" /></label>
+        <label>Цена, ₽<input id="adminPrice" required type="number" min="0" placeholder="15900" /></label>
+        <label>Категория<select id="adminCategory"><option value="sneakers">Sneakers</option><option value="apparel">Apparel</option><option value="accessories">Accessories</option></select></label>
+        <label>Цвет<input id="adminColor" placeholder="White / Black" /></label>
+        <label>Размеры<input id="adminSizes" placeholder="36, 37, 38, 39, 40" /></label>
+        <label>Остаток<input id="adminStock" type="number" min="0" placeholder="12" /></label>
+        <label class="wide-field">Описание<textarea id="adminDescription" rows="3" placeholder="Материалы, посадка, особенности модели"></textarea></label>
+        <label class="wide-field">Фото по ссылке<input id="adminImage" type="url" placeholder="https://..." /></label>
+        <label class="upload-field wide-field">Или загрузить фото с устройства<input id="adminImageFile" type="file" accept="image/*" /><span id="imageName">PNG, JPG или WEBP</span></label>
+        <div class="image-preview wide-field" id="imagePreview"><span>Предпросмотр фото</span></div>
+        <div class="admin-form-actions wide-field"><button class="button button-dark" id="adminSave" type="submit">Добавить товар</button><button class="button button-light" id="adminCancelEdit" type="button" hidden>Отменить редактирование</button></div>
+      </div>
       <div class="admin-list" id="adminList"></div>
       <button class="button button-light" id="adminReset" type="button">Сбросить демо-каталог</button>
     </form>
